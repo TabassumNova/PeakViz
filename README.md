@@ -1,19 +1,17 @@
-# FTIR_PSR_Viz
-This repository represents a simple workflow to visualize Hyperspectral data from point sensors: PSR and Fourier Transform Infrared Spectroscopy (FTIR) sensor. The wavelength ranges for these sensors are :
+# PeakViz
+This repository represents a simple workflow to visualize Hyperspectral data from point sensors: [PSR](https://www.malvernpanalytical.com/en/products/technology/near-infrared-spectroscopy) and [Fourier Transform Infrared Spectroscopy (FTIR)](https://en.wikipedia.org/wiki/Fourier-transform_infrared_spectroscopy) sensor. The wavelength ranges for these sensors are :
 - PSR : 350.0 - 2500.0 nm
 - FTIR : 2500.0629 - 15385.6915 nm
 
 <p align="center">
-  <img src="image.png" width="900"/>
+  <img src="image1.png" width="900"/>
 </p>
 
-# Usage
-- git clone this_repository
-- pip install -r /path/to/requirements.txt
-- python gui.py
-- Click "Load files" to load text files
-- Click "Open Data" to vizualize the hyperspectral plots
+# Tutorial
+Coming soon ...
 
-# TODO
-- Add preprocessing functionality
-- Automated peak detection method
+# Acknowledgement
+This work is performed at [Helmholtz Institute Freiberg for Resource Technology](https://www.hzdr.de/db/Cms?pOid=32948&pNid=2423&pLang=en) in the [Exploration](https://www.iexplo.space/) department
+
+
+
