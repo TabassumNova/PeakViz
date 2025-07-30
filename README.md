@@ -4,7 +4,7 @@ This repository represents a simple workflow to visualize Hyperspectral data fro
 - FTIR : 2500.0629 - 15385.6915 nm
 
 <p align="center">
-  <img src="image1.png" width="900"/>
+  <img src="image1.png" width="500"/>
 </p>
 
 # Tutorial
