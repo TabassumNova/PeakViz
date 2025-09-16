@@ -1,10 +1,14 @@
+[project.scripts]
+peakviz = "peakviz.cli:main"
+
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
+requires = ["setuptools>=65.0.0"]
 build-backend = "setuptools.build_meta"
+
 
 [project]
 name = "peakviz"
-version = "0.1.0"
+version = "0.1.2"
 description = "A tool to visualize Hyperspectral data from point and imaging sensors."
 authors = [
     { name = "Tasnim Tabassum Nova", email = "tabassumnova1@gmail.com" }
@@ -19,6 +23,14 @@ dependencies = [
     "pandas",
     "plotly",
 ]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
 
 [project.urls]
 Homepage = "https://github.com/TabassumNova/PeakViz"
