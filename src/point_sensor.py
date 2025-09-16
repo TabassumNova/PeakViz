@@ -8,6 +8,7 @@ from .vizualization import *
 from .pre_processing import *
 
 class PointSensor(QScrollArea):
+
     def __init__(self):
         super(PointSensor, self).__init__()
         self.widget1 = QWidget()
@@ -32,8 +33,8 @@ class PointSensor(QScrollArea):
         self.reflectance_averaged_df = None
         self.absorbance_averaged_df = None
         self.download_flag = False
-        # self.setFixedWidth(500)
-        # self.setFixedHeight(670)
+        self.setFixedWidth(500)
+        self.setFixedHeight(700)
 
         # Choose sensor
         self.label1 = QLabel(self.widget1)
@@ -77,18 +78,36 @@ class PointSensor(QScrollArea):
         self.label3.setStyleSheet("border: 0.5px solid gray;")
         self.label3.setGeometry(QRect(150, 125, 130, 30))
 
+
+        # Label for renaming files from comment (VNIR/SWIR only)
+        self.rename_label = QLabel(self.widget1)
+        self.rename_label.setObjectName('Rename files from comment')
+        self.rename_label.setText('Rename the files (Only applicable to VNIR/SWIR)')
+        self.rename_label.setFont(font)
+        self.rename_label.setGeometry(QRect(10, 170, 350, 20))
+
+        # Checkbox for renaming
+        self.rename_checkbox = QCheckBox('Rename', self.widget1)
+        self.rename_checkbox.setGeometry(QRect(10, 195, 80, 25))
+        # self.rename_checkbox.stateChanged.connect(self.select_rename)
+
+        # Save button beside checkbox
+        self.save_button = QPushButton('Save', self.widget1)
+        self.save_button.setGeometry(QRect(100, 195, 80, 25))
+        # self.save_button.clicked.connect(self.rename_files)
+
         # Select Absorbance files
         self.label4 = QLabel(self.widget1)
         self.label4.setObjectName('Select single or multiple "Absorbance" files (Optional)')
         self.label4.setText('Select single or multiple "Absorbance" files (Optional)')  
         self.label4.setFont(font)
-        self.label4.setGeometry(QRect(10, 180, 365, 20))
+        self.label4.setGeometry(QRect(10, 235, 365, 20))
 
         # Button for loading Absorbance
         self.btn2 = QPushButton(self.widget1)
         self.btn2.setObjectName('Load Absorbance')
         self.btn2.setText('Load Absorbance')
-        self.btn2.setGeometry(QRect(10, 210, 130, 40))
+        self.btn2.setGeometry(QRect(10, 265, 130, 40))
         self.btn2.clicked.connect(self.absorbance_file_dialog)
 
         # Message for loading Absorbance files
@@ -96,20 +115,20 @@ class PointSensor(QScrollArea):
         self.label5.setObjectName('Absorbance loaded')
         self.label5.setText('')
         self.label5.setStyleSheet("border: 0.5px solid gray;")
-        self.label5.setGeometry(QRect(150, 215, 130, 30))
+        self.label5.setGeometry(QRect(150, 270, 130, 30))
 
          # Select Library file
         self.label6 = QLabel(self.widget1)
         self.label6.setObjectName('Select fingerprint library for the specified sensor (Optional)')
         self.label6.setText('Select fingerprint library for the specified sensor (Optional)')  
         self.label6.setFont(font)
-        self.label6.setGeometry(QRect(10, 265, 400, 20))
+        self.label6.setGeometry(QRect(10, 310, 400, 20))
 
         # Button for loading Library
         self.btn3 = QPushButton(self.widget1)
         self.btn3.setObjectName('Load Fingerprints')
         self.btn3.setText('Load Fingerprints')
-        self.btn3.setGeometry(QRect(10, 295, 130, 40))
+        self.btn3.setGeometry(QRect(10, 340, 130, 40))
         self.btn3.clicked.connect(self.open_library)
 
         # Message for library files
@@ -117,7 +136,7 @@ class PointSensor(QScrollArea):
         self.label7.setObjectName('Fingerprints loaded')
         self.label7.setText('')
         self.label7.setStyleSheet("border: 0.5px solid gray;")
-        self.label7.setGeometry(QRect(150, 300, 130, 30))
+        self.label7.setGeometry(QRect(150, 345, 130, 30))
 
         #### test
          # Select Reference spectrum
@@ -125,13 +144,13 @@ class PointSensor(QScrollArea):
         self.label8.setObjectName('Select Reference spectrum for the specified sensor (Optional)')
         self.label8.setText('Select Reference spectrum for the specified sensor (Optional)')  
         self.label8.setFont(font)
-        self.label8.setGeometry(QRect(10, 350, 420, 20))
+        self.label8.setGeometry(QRect(10, 385, 420, 20))
 
         # Button for loading Reference spectrum
         self.btn4 = QPushButton(self.widget1)
         self.btn4.setObjectName('Load Spectrums')
         self.btn4.setText('Load Spectrums')
-        self.btn4.setGeometry(QRect(10, 380, 130, 40))
+        self.btn4.setGeometry(QRect(10, 415, 130, 40))
         self.btn4.clicked.connect(self.open_refSpectrums)
 
         # Message for Reference spectrum
@@ -139,7 +158,7 @@ class PointSensor(QScrollArea):
         self.label9.setObjectName('Spectrums loaded')
         self.label9.setText('')
         self.label9.setStyleSheet("border: 0.5px solid gray;")
-        self.label9.setGeometry(QRect(150, 385, 130, 30))
+        self.label9.setGeometry(QRect(150, 420, 130, 30))
         #########
 
         # Select pre-processing method
@@ -147,16 +166,16 @@ class PointSensor(QScrollArea):
         self.label10.setObjectName('Select Pre-processing method (Optional)')
         self.label10.setText('Select Pre-processing method (Optional)')  
         self.label10.setFont(font)
-        self.label10.setGeometry(QRect(10, 435, 365, 20))
+        self.label10.setGeometry(QRect(10, 460, 365, 20))
 
         # creating check box for re-scaling
         self.checkBoxRescaling = QCheckBox("Y-axis rescaling", self.widget1) 
-        self.checkBoxRescaling.setGeometry(10, 465, 160, 30)
+        self.checkBoxRescaling.setGeometry(10, 490, 160, 30)
         self.checkBoxRescaling.stateChanged.connect(self.select_rescaling)
 
         # creating check box for choosing sensor
         self.checkBoxAverage = QCheckBox("Average", self.widget1) 
-        self.checkBoxAverage.setGeometry(160, 465, 160, 30)
+        self.checkBoxAverage.setGeometry(160, 490, 160, 30)
         self.checkBoxAverage.stateChanged.connect(self.select_average)
 
         # Start visualization
@@ -164,18 +183,18 @@ class PointSensor(QScrollArea):
         self.label11.setObjectName('Data visualisation')
         self.label11.setText('Data visualisation')  
         self.label11.setFont(font)
-        self.label11.setGeometry(QRect(10, 515, 365, 20))
+        self.label11.setGeometry(QRect(10, 530, 365, 20))
 
         # creating check box for choosing sensor
         self.checkBoxDownload = QCheckBox("Download as .html", self.widget1) 
-        self.checkBoxDownload.setGeometry(10, 545, 150, 30)
+        self.checkBoxDownload.setGeometry(10, 560, 150, 30)
         self.checkBoxDownload.stateChanged.connect(self.select_download)
 
         # For opening data
         self.btn5 = QPushButton(self.widget1)
         self.btn5.setObjectName('Open Data')
         self.btn5.setText('Open Data')
-        self.btn5.setGeometry(QRect(10, 585, 111, 40))
+        self.btn5.setGeometry(QRect(10, 590, 111, 40))
         self.btn5.clicked.connect(self.open_data)
 
         self.setWidget(self.widget1)
