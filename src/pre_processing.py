@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
 import os
-from hylite import HyImage
 
 def rescale_data(df):
     new = []
@@ -52,37 +51,3 @@ def average_data(df, input_path, signal_type):
 
     averaged_df2 = pd.DataFrame([[averaged_name]+averaged_list], columns=list(df.columns))
     return averaged_df2
-
-def kubelka_munk_hylite(hyimage):
-    """
-    Applies the Kubelka-Munk transformation to a hylite.HyImage object.
-
-    Parameters:
-        hyimage (HyImage): Hyperspectral image with reflectance data.
-
-    Returns:
-        HyImage: Transformed image containing Kubelka-Munk values.
-    """
-    # Ensure the data is reflectance (between 0 and 1)
-    reflectance = hyimage.data
-
-    # Avoid division by zero and invalid values
-    reflectance = np.clip(reflectance, 1e-6, 1)
-
-    # Apply Kubelka-Munk transformation
-    ks_values = (1 - reflectance) ** 2 / (2 * reflectance)
-
-    # Create a new HyImage to store the transformed data
-    ks_image = HyImage(ks_values, wavelength=hyimage.get_wavelengths())
-
-    return ks_image
-
-
-# # Example usage
-# # Load an example hyperspectral image (modify path as needed)
-# hyimage = HyImage("example.hdr")  # Replace with your actual image file
-# ks_image = kubelka_munk_hylite(hyimage)
-#
-# # Save or visualize the result
-# ks_image.save("ks_image.hdr")
-# ks_image.quick_plot()

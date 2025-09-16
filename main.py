@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QVBoxLayout, QTabWidget
 import sys
 from src.point_sensor import *
-from src.imaging_sensor import *
+# from src.imaging_sensor import *
 
 # Creating the main window
 class App(QMainWindow):
@@ -30,11 +30,11 @@ class MyTabWidget(QWidget):
         self.tabs.setTabPosition(QTabWidget.North)
 
         self.tab1 = PointSensor()
-        self.tab2 = ImagingSensor()
+        # self.tab2 = ImagingSensor()
 
         # Add tabs
         self.tabs.addTab(self.tab1, "Point Sensors")
-        self.tabs.addTab(self.tab2, "Imaging Sensors")
+        # self.tabs.addTab(self.tab2, "Imaging Sensors")
 
         # Set style for tabs
         self.tabs.setStyleSheet("""

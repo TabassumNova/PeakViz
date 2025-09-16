@@ -1,5 +1,5 @@
 # PeakViz
-This repository represents a simple workflow to visualize Hyperspectral data from point sensors: [PSR](https://www.malvernpanalytical.com/en/products/technology/near-infrared-spectroscopy) and [Fourier Transform Infrared Spectroscopy (FTIR)](https://en.wikipedia.org/wiki/Fourier-transform_infrared_spectroscopy) sensor. The wavelength ranges for these sensors are :
+This repository represents a simple workflow to visualize Hyperspectral data from point sensors: PSR and Fourier Transform Infrared Spectroscopy (FTIR) sensor. The wavelength ranges for these sensors are :
 - PSR : 350.0 - 2500.0 nm
 - FTIR : 2500.0629 - 15385.6915 nm
 
