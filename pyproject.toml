@@ -8,7 +8,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "peakviz"
-version = "0.1.2"
+version = "0.1.3"
 description = "A tool to visualize Hyperspectral data from point and imaging sensors."
 authors = [
     { name = "Tasnim Tabassum Nova", email = "tabassumnova1@gmail.com" }
