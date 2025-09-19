@@ -1,11 +1,16 @@
+
 import ast
 import plotly.graph_objects as go
 import plotly.express as px
 import numpy as np
+import webbrowser
+import os
 
 
 def viz(batch_name, df_plot, fingerprint_library=None, reference_Spectrums=None,
-        sensor='', download=False):
+        sensor='', 
+        output_dir=None,
+        ):
     fig = go.Figure()
     buttons = []
     start = 0
@@ -155,9 +160,11 @@ def viz(batch_name, df_plot, fingerprint_library=None, reference_Spectrums=None,
     fig.update_layout(hovermode="x unified")
     fig.update_traces(textposition='top center')
 
-    if download:
-        fig.write_html(text + ".html")
-     
-    fig.show()
+    if output_dir:
+        html_path = os.path.join(output_dir, text + ".html")
+        fig.write_html(html_path)
+        webbrowser.open(html_path)
+
+    # fig.show() # installed package cannot open html without saving it
 
     

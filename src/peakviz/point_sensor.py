@@ -93,7 +93,7 @@ class PointSensor(QScrollArea):
 
         # Save button beside checkbox
         self.save_button = QPushButton('Save', self.widget1)
-        self.save_button.setGeometry(QRect(100, 195, 80, 25))
+        self.save_button.setGeometry(QRect(150, 195, 80, 25))
         # self.save_button.clicked.connect(self.rename_files)
 
         # Select Absorbance files
@@ -185,22 +185,47 @@ class PointSensor(QScrollArea):
         self.label11.setFont(font)
         self.label11.setGeometry(QRect(10, 530, 365, 20))
 
-        # creating check box for choosing sensor
-        self.checkBoxDownload = QCheckBox("Download as .html", self.widget1) 
-        self.checkBoxDownload.setGeometry(10, 560, 150, 30)
-        self.checkBoxDownload.stateChanged.connect(self.select_download)
+        
+        # Button for loading output location
+        self.output_location_button = QPushButton(self.widget1)
+        self.output_location_button.setObjectName('Output location')
+        self.output_location_button.setText('Output location')
+        self.output_location_button.setGeometry(QRect(10, 560, 130, 40))
+        self.output_location_button.clicked.connect(self.select_download_location)
+
+        # output location label
+        self.output_location_label = QLabel(self.widget1)
+        self.output_location_label.setObjectName('Output location')
+        self.output_location_label.setText('Not selected')
+        self.output_location_label.setStyleSheet("border: 0.5px solid gray;")
+        self.output_location_label.setGeometry(QRect(150, 565, 130, 30))
+
+        self.output_dir = None
+
+        # # creating check box for downloading option
+        # self.checkBoxDownload = QCheckBox("Download as .html", self.widget1) 
+        # self.checkBoxDownload.setGeometry(10, 560, 150, 30)
+        # self.checkBoxDownload.stateChanged.connect(self.select_download)
 
         # For opening data
-        self.btn5 = QPushButton(self.widget1)
+        self.btn5 = QPushButton('Open Data', self.widget1)
         self.btn5.setObjectName('Open Data')
-        self.btn5.setText('Open Data')
-        self.btn5.setGeometry(QRect(10, 590, 111, 40))
+        # self.btn5.setText('Open Data')
+        self.btn5.setGeometry(QRect(10, 610, 111, 25))
         self.btn5.clicked.connect(self.open_data)
 
         self.setWidget(self.widget1)
         self.setWidgetResizable(True)
         self.widget1.setLayout(layout1)
-        
+
+    def select_download_location(self):
+        dir_path = QFileDialog.getExistingDirectory(self, 'Select Download Directory')
+        if dir_path:
+            self.output_dir = dir_path
+            self.output_location_label.setText(f'{dir_path}')
+        else:
+            self.output_location_label.setText('Not selected')
+
     def select_sensor(self, state):
         if state == Qt.Checked: 
             if self.sender() == self.checkBoxSWIR: 
@@ -318,7 +343,9 @@ class PointSensor(QScrollArea):
         # This creates vizualization to plot multiple data
         viz(self.batchname, df_plot, fingerprint_library=self.library_df, 
             reference_Spectrums=self.refSpectrum_df,
-            sensor=self.sensor, download=self.download_flag)
+            sensor=self.sensor,
+            # download=self.download_flag,
+            output_dir=self.output_dir)
         # Check if del obj is possible
         self.reflectance_files = None
         self.absorbance_files = None
