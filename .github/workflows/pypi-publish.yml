@@ -1,13 +1,9 @@
-name: Build and Publish to PyPI
+name: Publish Python 🐍 distribution 📦 to PyPI
 
 on:
   push:
     tags:
-      - "[0-9]+.[0-9]+.[0-9]+"
-      - "[0-9]+.[0-9]+.[0-9]+a[0-9]+"
-      - "[0-9]+.[0-9]+.[0-9]+b[0-9]+"
-      - "[0-9]+.[0-9]+.[0-9]+rc[0-9]+"
-      # - 'v0.1.3'  # Only publish on version tags like v1.2.3
+      - 'v*.*.*'
 
 jobs:
   build-and-publish:
@@ -19,7 +15,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: '3.x'
 
       - name: Install build tools
         run: |
