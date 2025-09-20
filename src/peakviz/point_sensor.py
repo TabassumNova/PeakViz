@@ -362,7 +362,7 @@ class PointSensor(QScrollArea):
         self.label9.setText("")
         # self.label7.setText("")
         # if hasattr(self, 'downloadCheckBox'):
-        self.checkBoxDownload.setChecked(False)
+        # self.checkBoxDownload.setChecked(False)
         # if hasattr(self, 'averageCheckBox'):
         self.checkBoxAverage.setChecked(False)
 

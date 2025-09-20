@@ -5,6 +5,7 @@ import plotly.express as px
 import numpy as np
 import webbrowser
 import os
+import pathlib
 
 
 def viz(batch_name, df_plot, fingerprint_library=None, reference_Spectrums=None,
@@ -162,8 +163,8 @@ def viz(batch_name, df_plot, fingerprint_library=None, reference_Spectrums=None,
 
     if output_dir:
         html_path = os.path.join(output_dir, text + ".html")
-        fig.write_html(html_path)
-        webbrowser.open(html_path)
+        fig.write_html(html_path)        
+        webbrowser.open(pathlib.Path(html_path).absolute().as_uri())
 
     # fig.show() # installed package cannot open html without saving it
 
