@@ -61,7 +61,7 @@ def load_data(paths, signal_type, search_text):
             sample_energy = [filename]
             wavelength_list = ['sample']
             for line0 in lines:
-                line = line0.strip().split(" ")
+                line = re.split(r'[ \t]+', line0.strip())
                 if is_float(line[0]):
                     wavelength = float(line[0])
                     energy = float(line[-1])
@@ -74,7 +74,7 @@ def load_data(paths, signal_type, search_text):
             sample_energy = []
             wavelength_list = []
             for line0 in lines:
-                line = line0.strip().split(" ")
+                line = re.split(r'[ \t]+', line0.strip())
                 if is_float(line[0]):
                     energy = float(line[-1])
                     sample_energy = [energy] + sample_energy

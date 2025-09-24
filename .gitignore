@@ -25,3 +25,5 @@ src/peakviz/__pycache__/cli.cpython-312.pyc
 src/peakviz/__pycache__/dataloader.cpython-312.pyc
 src/peakviz/__pycache__/pre_processing.cpython-312.pyc
 src/peakviz/__pycache__/vizualization.cpython-312.pyc
+src/peakviz/__pycache__/__main__.cpython-312.pyc
+.vscode/launch.json
