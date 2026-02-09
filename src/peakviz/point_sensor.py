@@ -227,15 +227,14 @@ class PointSensor(QScrollArea):
             self.output_location_label.setText('Not selected')
 
     def select_sensor(self, state):
-        if state == Qt.Checked: 
-            if self.sender() == self.checkBoxSWIR: 
-                self.checkBoxMWIR.setChecked(False) 
-                self.sensor = 'VNIR_SWIR' 
-                self.search_text = 'Measurement:'
-            elif self.sender() == self.checkBoxMWIR:  
-                self.checkBoxSWIR.setChecked(False) 
-                self.sensor = 'MWIR_LWIR' 
-                self.search_text = 'XYUNITS'
+        if state == Qt.Checked:
+            if self.sender() == self.checkBoxSWIR:
+                self.checkBoxMWIR.setChecked(False)
+                self.sensor = 'VNIR_SWIR'
+            elif self.sender() == self.checkBoxMWIR:
+                self.checkBoxSWIR.setChecked(False)
+                self.sensor = 'MWIR_LWIR'
+            self.search_text = ['XYUNITS', 'Measurement:']
 
     def create_batchname(self, file_path):
         # Get the batchname

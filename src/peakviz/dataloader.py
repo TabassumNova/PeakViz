@@ -12,12 +12,15 @@ def is_float(s):
 def check_and_extract_line(file_path, search_text):
     with open(file_path, 'r') as file:
         content = file.read()
-    if search_text in content:
-        # Use regex to find the line starting with the specified 'line' variable
-        pattern = f"^{re.escape(search_text)}.*$"
-        match = re.search(pattern, content, re.MULTILINE)
-        if match:
-            return True, match.group(0)
+    # Allow search_text to be a list or a single string
+    search_texts = search_text if isinstance(search_text, list) else [search_text]
+    for st in search_texts:
+        if st in content:
+            # Use regex to find the line starting with the specified 'line' variable
+            pattern = f"^{re.escape(st)}.*$"
+            match = re.search(pattern, content, re.MULTILINE)
+            if match:
+                return True, match.group(0)
     return False, None
 
 def find_xy(extracted_line):
